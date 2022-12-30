@@ -25,6 +25,12 @@ async function run (){
             res.send(result)
         })
 
+        app.post('/posts', async(req, res)=>{
+            const post = req.body
+            const result = await postCollection.insertOne(post)
+            res.send(result)
+        })
+
 
         app.get('/posts/:id', async(req, res)=>{
             const id = req.params.id;
@@ -74,7 +80,7 @@ async function run (){
                     university:user.university
                 }
             }
-            console.log(user);
+            // console.log(user);
             const result = await userCollection.updateOne(filter,updatedDoc, option)
             res.send(result)
         })
